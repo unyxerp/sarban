@@ -72,7 +72,7 @@ die()  { echo "[X] $*"; notify "$*" "BUILD FAILED" "31"; exit 1; }
 phase0_ramdisk_and_full_busybox() {
     info "Creating ramdisk (80% of RAM)..."
     # /proc/meminfo parsing with just head + test (no awk)
-    total_kb=$(head -1 /proc/meminfo 2>/dev/null)
+    total_kb=$(head -n 1 /proc/meminfo 2>/dev/null)
     # total_kb looks like "MemTotal:       4023932 kB"
     # Strip everything non-digit
     total_kb=$(echo "$total_kb" | grep -o '[0-9][0-9]*')
